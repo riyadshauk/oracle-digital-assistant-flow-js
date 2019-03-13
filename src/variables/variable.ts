@@ -2,13 +2,11 @@ import Entity from '../misc/entity';
 import String from '../helpers/string';
 export default abstract class Variable {
   private static count = 1;
-  // private static variables: Variable[] = [];
   id: string;
   name: String;
   constructor(name?: string) {
     this.id = this.generateUID();
     this.name = new String(name);
-    // Variable.variables.push(this);
   }
   private generateUID(): string {
     return `Variable${Variable.count++}`;

@@ -6,9 +6,9 @@ export default class StringifiedState {
     variable?: string,
     source?: string,
     value?: string | boolean | number, // @see page 9+10 for array example: https://cdn.app.compendium.com/uploads/user/e7c690e8-6ff9-102a-ac6d-e4aebca50425/e6ee15e8-2e68-4a1a-adad-eac941a469d4/File/e7d9cf54cd5f543e83971fd26588e232/apachefreemarkerinbotml_v2.pdf
-    from?: string,      // use .toString() for YAML
-    to?: string,        // use .toString() for YAML
-    options?: string,     // use .toString() for YAML
+    from?: string,
+    to?: string,
+    options?: string,
     prompt?: string,
     text?: string,
     [key: string]: string|boolean|number,

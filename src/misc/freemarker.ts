@@ -28,7 +28,7 @@ export default class FreeMarker {
   private interpolate(freeMarker: string): string {
     const interpolation = freeMarker.replace(/#{.*?}/g, (substring: string) => {
       const variable = this.variable[substring.replace('#{', '').replace('}', '')];
-      return  variable.getDisplayName();
+      return variable.getDisplayName();
     });
     return interpolation;
   }
