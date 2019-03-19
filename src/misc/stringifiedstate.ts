@@ -1,6 +1,6 @@
 import State from '../states/state';
 import Variable from '../variables/variable';
-import String from '../helpers/string';
+import String, { hasOwnProperty } from '../helpers/string';
 export default class StringifiedState {
   properties: {
     variable?: string,
@@ -29,24 +29,26 @@ export default class StringifiedState {
       const propertyValue: any = state.properties[property];
       if (propertyValue instanceof Variable) {
         this.properties[property] = (propertyValue as Variable).getDisplayName();
-      } else if (Array.isArray(propertyValue) && (propertyValue as Variable[]).length > 0 && (propertyValue as Variable[])[0] instanceof Variable) {
-        this.properties[property] = (propertyValue as Variable[]).map((variable: Variable) =>  variable.getDisplayName()).join(',');
+      } else if (Array.isArray(propertyValue) && (propertyValue as Variable[]).length > 0
+        && (propertyValue as Variable[])[0] instanceof Variable) {
+        this.properties[property] = (propertyValue as Variable[]).map((variable: Variable) => (
+          variable.getDisplayName())).join(',');
       } else if (property === 'name') {
         this.properties.name = (propertyValue as String).getValue();
       } else {
         this.properties[property] = propertyValue.toString();
       }
     });
-    if (state.transitions.hasOwnProperty('actions')) {
+    if (hasOwnProperty(state.transitions, 'actions')) {
       Object.keys(state.transitions.actions).forEach((action: string) => {
-        if (!this.transitions.hasOwnProperty('actions')) {
+        if (!hasOwnProperty(this.transitions, 'actions')) {
           this.transitions.actions = {};
         }
         this.transitions.actions[action] = state.transitions.actions[action];
       });
     }
-    if (state.transitions.hasOwnProperty('return')) {
-      this.transitions.return = state.transitions['return'];
+    if (hasOwnProperty(state.transitions, 'return')) {
+      this.transitions.return = state.transitions.return;
     }
   }
   json(): any {
@@ -54,6 +56,6 @@ export default class StringifiedState {
       component: this.component,
       properties: this.properties,
       transitions: this.transitions,
-    }
+    };
   }
 }

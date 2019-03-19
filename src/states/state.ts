@@ -1,6 +1,6 @@
 import Intent from './intent';
 import Variable from '../variables/variable';
-import String from '../helpers/string';
+import String, { hasOwnProperty } from '../helpers/string';
 export default abstract class State {
   private static count = 1;
   componentType: string;
@@ -26,6 +26,7 @@ export default abstract class State {
   name: String;
   constructor(componentType: string, name: string) {
     this.componentType = componentType;
+    // eslint-disable-next-line no-new-wrappers
     this.name = new String(name);
     this.id = this.generateUID();
     this.properties = {};
@@ -36,14 +37,15 @@ export default abstract class State {
     return this;
   }
   addAction(intent: Intent, action: State): this {
-    if (!this.transitions.hasOwnProperty('actions')) {
+    if (!hasOwnProperty(this.transitions, 'actions')) {
       this.transitions.actions = {};
     }
     this.transitions.actions[intent.getDisplayName()] = action.getDisplayName();
     return this;
   }
+  // eslint-disable-next-line class-methods-use-this
   private generateUID(): string {
-    return `State${State.count++}`;
+    return `State${State.count += 1}`;
   }
   changeName(name: string): this {
     this.name.replaceValue(name);

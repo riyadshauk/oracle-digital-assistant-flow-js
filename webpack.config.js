@@ -7,5 +7,5 @@ module.exports = {
     path: path.resolve(__dirname),
     library: 'digital-assistant-flow-js',
     libraryTarget: 'commonjs2', // commonjs2 is a version of commonjs that works with Node.js (module.exports)
-  }
+  },
 };

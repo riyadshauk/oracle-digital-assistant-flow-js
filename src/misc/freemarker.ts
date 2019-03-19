@@ -12,10 +12,9 @@ export default class FreeMarker {
     return this;
   }
   /**
-   * 
    * @param {string} freeMarker the text to set as the Free Marker Expression for this.
-   * 
-   * NOTE: For some Variable x, use #{x} to later correctly interpolate x as a 
+   *
+   * NOTE: For some Variable x, use #{x} to later correctly interpolate x as a
    * Free Marker Expression for Oracle BotML (see FreeMarker.interpolate).
    */
   set(freeMarker: string): this {

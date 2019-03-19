@@ -14,3 +14,6 @@ export default class String {
     return this.str;
   }
 }
+export const hasOwnProperty = (o: Object, prop: string) => (
+  Object.prototype.hasOwnProperty.call(o, prop)
+);
